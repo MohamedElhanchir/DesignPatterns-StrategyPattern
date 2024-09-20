@@ -1,17 +1,25 @@
+import strategy.IStrategy;
+import strategy.IStrategyImplByDefault;
+
 public class Context {
 
-    public void process(int type){
+    IStrategy strategy;
 
-        System.out.println("start processing");
-        if(type==1){
-            System.out.println("Processing type 1");
-        }else if(type==2){
-            System.out.println("Processing type 2");
-        } else if (type==3){
-            System.out.println("Processing type 3");
-        } else{
-            System.out.println("Processing by default");
+    public Context() {
+        this.strategy = new IStrategyImplByDefault();
     }
-    System.out.println("end processing");
+
+    public IStrategy getStrategy() {
+        return strategy;
+    }
+
+    public void setStrategy(IStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void process(){
+        System.out.println("Processing...");
+        this.strategy.applyStrategy();
+        System.out.println("Process completed");
     }
 }
